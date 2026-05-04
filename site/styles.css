@@ -248,7 +248,7 @@ h1 {
   display: grid;
   gap: 9px;
   width: 100%;
-  min-height: 156px;
+  min-height: 218px;
   padding: 16px;
   border: 2px solid var(--line);
   border-radius: 8px;
@@ -323,8 +323,29 @@ h1 {
   -webkit-line-clamp: 2;
 }
 
+.row-access {
+  display: grid;
+  gap: 6px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.row-access span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.row-access svg {
+  width: 15px;
+  height: 15px;
+  color: var(--green);
+}
+
 .row-footer {
   display: flex;
+  align-self: end;
   justify-content: space-between;
   gap: 12px;
   color: var(--muted);
@@ -539,6 +560,50 @@ h1 {
   line-height: 1.38;
 }
 
+.access-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0 16px;
+}
+
+.access-strip div {
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(21, 23, 24, 0.12);
+}
+
+.access-strip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.access-strip span svg {
+  color: var(--green);
+}
+
+.access-strip strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.access-strip small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
 .link-row a {
   display: inline-flex;
   align-items: center;
@@ -656,6 +721,10 @@ svg {
   }
 
   .visit-plan {
+    grid-template-columns: 1fr;
+  }
+
+  .access-strip {
     grid-template-columns: 1fr;
   }
 }

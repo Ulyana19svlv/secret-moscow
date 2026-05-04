@@ -51,6 +51,16 @@ function linkToYandex(place) {
   return `https://yandex.ru/maps/?text=${text}`;
 }
 
+function formatDrive(access) {
+  if (!access || !access.fromHome) return "маршрут уточнить";
+  return `~${access.fromHome.minutes} мин · ${access.fromHome.km} км`;
+}
+
+function formatMetro(access) {
+  if (!access || !access.metro || !access.metro.length) return "метро уточнить";
+  return access.metro.slice(0, 2).map((station) => `${station.name} ${station.distanceKm} км`).join(" · ");
+}
+
 function filteredPlaces() {
   const query = state.search.trim().toLowerCase();
   return places.filter((place) => {
@@ -88,6 +98,10 @@ function renderList() {
         <span class="row-kicker"><i data-lucide="${meta.icon}"></i>${place.category}</span>
         <span class="row-title">${place.title}</span>
         <span class="row-description">${place.description}</span>
+        <span class="row-access">
+          <span><i data-lucide="car"></i>${formatDrive(place.access)}</span>
+          <span><i data-lucide="train-front"></i>${formatMetro(place.access)}</span>
+        </span>
         <span class="row-footer">
           <span>${place.tags.slice(0, 2).join(" / ")}</span>
           <span>${social || "план"}</span>
@@ -121,6 +135,18 @@ function renderDetails() {
     </div>
     <h2>${place.title}</h2>
     <p class="address"><i data-lucide="map-pin"></i>${place.address}</p>
+    <div class="access-strip">
+      <div>
+        <span><i data-lucide="car"></i>Из дома</span>
+        <strong>${formatDrive(place.access)}</strong>
+        <small>${place.access?.fromHome?.note || "примерный ориентир"}</small>
+      </div>
+      <div>
+        <span><i data-lucide="train-front"></i>Метро рядом</span>
+        <strong>${place.access?.metro?.[0]?.name || "уточнить"}</strong>
+        <small>${formatMetro(place.access)}</small>
+      </div>
+    </div>
     <p class="details-lead">${place.description}</p>
     <div class="tag-cloud">${place.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
     <div class="visit-plan">
