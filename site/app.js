@@ -23,6 +23,12 @@ const elements = {
   searchInput: document.querySelector("#searchInput")
 };
 
+function createIcons() {
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+}
+
 function linkToYandex(place) {
   const text = encodeURIComponent(place.address || place.title);
   return `https://yandex.ru/maps/?text=${text}`;
@@ -88,7 +94,7 @@ function renderDetails() {
       `).join("")}
     </div>
   `;
-  lucide.createIcons();
+  createIcons();
 }
 
 function selectPlace(id, focusMap = true) {
@@ -117,7 +123,7 @@ function renderAll() {
   renderCategories();
   renderList();
   renderDetails();
-  lucide.createIcons();
+  createIcons();
 }
 
 function loadYandexScript(apiKey) {
