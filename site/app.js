@@ -1,10 +1,8 @@
 const places = window.SECRET_MOSCOW_PLACES;
 const DEFAULT_YANDEX_MAPS_KEY = "d0e7278b-1c42-448b-91c8-e17a315bbc82";
-const INBOX_URL_RE = /https?:\/\/[^\s)>\]"']+/gi;
 const categories = ["все", ...Array.from(new Set(places.map((place) => place.category)))];
 const state = {
   category: "все",
-  inboxDrafts: [],
   search: "",
   selectedId: places[0].id,
   map: null,
@@ -14,20 +12,10 @@ const state = {
 
 const elements = {
   categoryStrip: document.querySelector("#categoryStrip"),
-  clearInboxButton: document.querySelector("#clearInboxButton"),
-  closeInboxButton: document.querySelector("#closeInboxButton"),
-  copyInboxButton: document.querySelector("#copyInboxButton"),
   countLabel: document.querySelector("#countLabel"),
   detailsPanel: document.querySelector("#detailsPanel"),
-  downloadInboxButton: document.querySelector("#downloadInboxButton"),
-  inboxCountLabel: document.querySelector("#inboxCountLabel"),
-  inboxDraftList: document.querySelector("#inboxDraftList"),
-  inboxOverlay: document.querySelector("#inboxOverlay"),
-  inboxText: document.querySelector("#inboxText"),
   mapKeyInput: document.querySelector("#mapKeyInput"),
   mapKeyPanel: document.querySelector("#mapKeyPanel"),
-  openInboxButton: document.querySelector("#openInboxButton"),
-  parseInboxButton: document.querySelector("#parseInboxButton"),
   placeList: document.querySelector("#placeList"),
   randomPlaceButton: document.querySelector("#randomPlaceButton"),
   resetButton: document.querySelector("#resetButton"),
@@ -39,136 +27,6 @@ function createIcons() {
   if (window.lucide) {
     window.lucide.createIcons();
   }
-}
-
-function cleanInboxUrl(url) {
-  return url.trim().replace(/[.,;]+$/, "");
-}
-
-function splitInboxBlocks(text) {
-  return text
-    .trim()
-    .split(/\n\s*\n+/)
-    .map((block) => block.split("\n").map((line) => line.trim()).filter(Boolean).join("\n"))
-    .filter(Boolean);
-}
-
-function guessInboxCategory(text) {
-  const lower = text.toLowerCase();
-  const checks = [
-    ["рестораны и кафе", ["кафе", "кофе", "ресторан", "бар", "завтрак", "ужин", "еда"]],
-    ["музеи и выставки", ["музей", "выстав", "галере", "павильон", "экспози"]],
-    ["парки и прогулки", ["парк", "сад", "прогул", "набереж", "трамвайчик"]],
-    ["спорт и активность", ["йога", "спорт", "батут", "падел", "фитнес", "клуб"]],
-    ["мастер-классы", ["мастер", "студия", "рисован", "шить", "гончар", "керамик"]],
-    ["пространства", ["пространство", "лофт", "холл", "ателье"]],
-    ["спа и красота", ["спа", "массаж", "салон", "уход"]],
-    ["события", ["событие", "концерт", "игра", "лото", "фестиваль"]]
-  ];
-  const found = checks.find(([, words]) => words.some((word) => lower.includes(word)));
-  return found ? found[0] : "не разобрано";
-}
-
-function guessInboxSource(urls) {
-  const joined = urls.join(" ").toLowerCase();
-  if (joined.includes("instagram.com")) return "instagram";
-  if (joined.includes("t.me") || joined.includes("telegram")) return "telegram";
-  return urls.length ? "link" : "text";
-}
-
-function titleFromInboxBlock(block, urls) {
-  const lines = block.split("\n").map((line) => line.trim()).filter(Boolean);
-  const nonUrlLine = lines.find((line) => {
-    INBOX_URL_RE.lastIndex = 0;
-    return !INBOX_URL_RE.test(line);
-  });
-  if (nonUrlLine) return nonUrlLine.replace(/^(маша|masha|я|me)\s*:\s*/i, "").slice(0, 90);
-  if (urls[0]) return urls[0].replace(/^https?:\/\//i, "").split("?")[0].slice(0, 90);
-  return "Новое место";
-}
-
-async function makeInboxId(text) {
-  const data = new TextEncoder().encode(text);
-  const hash = await crypto.subtle.digest("SHA-1", data);
-  return "inbox-" + Array.from(new Uint8Array(hash))
-    .slice(0, 6)
-    .map((byte) => byte.toString(16).padStart(2, "0"))
-    .join("");
-}
-
-async function parseInboxText(text) {
-  const createdAt = new Date().toISOString();
-  const drafts = [];
-  for (const block of splitInboxBlocks(text)) {
-    INBOX_URL_RE.lastIndex = 0;
-    const urls = Array.from(new Set((block.match(INBOX_URL_RE) || []).map(cleanInboxUrl)));
-    drafts.push({
-      id: await makeInboxId(block),
-      status: "new",
-      source: guessInboxSource(urls),
-      title: titleFromInboxBlock(block, urls),
-      raw_text: block,
-      urls,
-      category_guess: guessInboxCategory(block),
-      notes: "",
-      created_at: createdAt
-    });
-  }
-  return drafts;
-}
-
-function inboxJson() {
-  return JSON.stringify(state.inboxDrafts, null, 2);
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function renderInboxDrafts() {
-  elements.inboxCountLabel.textContent = `${state.inboxDrafts.length} черновиков`;
-  if (!state.inboxDrafts.length) {
-    elements.inboxDraftList.innerHTML = '<div class="empty-state">Пока пусто. Вставь сообщения и нажми «Разобрать».</div>';
-    return;
-  }
-
-  elements.inboxDraftList.innerHTML = state.inboxDrafts.map((draft) => `
-    <article class="draft-card">
-      <h3>${escapeHtml(draft.title)}</h3>
-      <div class="draft-meta">
-        <span>${escapeHtml(draft.source)}</span>
-        <span>${escapeHtml(draft.category_guess)}</span>
-        <span>${escapeHtml(draft.status)}</span>
-      </div>
-      <pre>${escapeHtml(draft.raw_text)}</pre>
-    </article>
-  `).join("");
-}
-
-function openInbox() {
-  elements.inboxOverlay.classList.add("open");
-  elements.inboxOverlay.setAttribute("aria-hidden", "false");
-  elements.inboxText.focus();
-}
-
-function closeInbox() {
-  elements.inboxOverlay.classList.remove("open");
-  elements.inboxOverlay.setAttribute("aria-hidden", "true");
-}
-
-function downloadInboxJson() {
-  const blob = new Blob([inboxJson()], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "places_inbox.json";
-  link.click();
-  URL.revokeObjectURL(url);
 }
 
 function linkToYandex(place) {
@@ -363,35 +221,6 @@ elements.randomPlaceButton.addEventListener("click", () => {
   const visible = filteredPlaces();
   const place = visible[Math.floor(Math.random() * visible.length)] || places[0];
   selectPlace(place.id);
-});
-
-elements.openInboxButton.addEventListener("click", openInbox);
-elements.closeInboxButton.addEventListener("click", closeInbox);
-elements.inboxOverlay.addEventListener("click", (event) => {
-  if (event.target === elements.inboxOverlay) closeInbox();
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && elements.inboxOverlay.classList.contains("open")) {
-    closeInbox();
-  }
-});
-
-elements.parseInboxButton.addEventListener("click", async () => {
-  state.inboxDrafts = await parseInboxText(elements.inboxText.value);
-  renderInboxDrafts();
-});
-
-elements.copyInboxButton.addEventListener("click", async () => {
-  await navigator.clipboard.writeText(inboxJson());
-});
-
-elements.downloadInboxButton.addEventListener("click", downloadInboxJson);
-
-elements.clearInboxButton.addEventListener("click", () => {
-  elements.inboxText.value = "";
-  state.inboxDrafts = [];
-  renderInboxDrafts();
 });
 
 elements.saveMapKeyButton.addEventListener("click", () => {

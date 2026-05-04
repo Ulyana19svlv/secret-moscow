@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script defer src="./places.js"></script>
-    <script defer src="./app.js?v=inbox-1"></script>
+    <script defer src="./app.js?v=inbox-page-1"></script>
   </head>
   <body>
     <main class="app-shell">
@@ -18,9 +18,9 @@
             <h1>Секретная Москва</h1>
           </div>
           <div class="brand-actions">
-            <button class="icon-button" id="openInboxButton" title="Входящие" aria-label="Входящие">
+            <a class="icon-button" href="./inbox.html" title="Входящие" aria-label="Входящие">
               <i data-lucide="inbox"></i>
-            </button>
+            </a>
             <button class="icon-button" id="randomPlaceButton" title="Случайное место" aria-label="Случайное место">
               <i data-lucide="shuffle"></i>
             </button>
@@ -60,42 +60,5 @@
         <article class="details-panel" id="detailsPanel"></article>
       </section>
     </main>
-
-    <section class="inbox-overlay" id="inboxOverlay" aria-hidden="true">
-      <div class="inbox-modal" role="dialog" aria-modal="true" aria-labelledby="inboxTitle">
-        <header class="inbox-header">
-          <div>
-            <p class="panel-kicker">Приемка</p>
-            <h2 id="inboxTitle">Новые места</h2>
-          </div>
-          <button class="icon-button compact" id="closeInboxButton" title="Закрыть" aria-label="Закрыть">
-            <i data-lucide="x"></i>
-          </button>
-        </header>
-
-        <div class="inbox-grid">
-          <section class="inbox-input">
-            <p>Вставь сообщения из Instagram или Telegram. Разные места лучше отделять пустой строкой.</p>
-            <textarea id="inboxText" placeholder="Маша: запиши это&#10;https://www.instagram.com/reel/...&#10;&#10;Еще одно место&#10;https://t.me/..."></textarea>
-            <div class="inbox-actions">
-              <button class="primary-button" id="parseInboxButton">Разобрать</button>
-              <button class="text-button" id="copyInboxButton">Скопировать JSON</button>
-              <button class="text-button" id="downloadInboxButton">Скачать JSON</button>
-              <button class="text-button" id="clearInboxButton">Очистить</button>
-            </div>
-            <p class="privacy-note">Текст разбирается только в этом браузере и никуда не отправляется.</p>
-          </section>
-
-          <section class="inbox-output">
-            <div class="list-meta">
-              <span id="inboxCountLabel">0 черновиков</span>
-            </div>
-            <div class="draft-list" id="inboxDraftList">
-              <div class="empty-state">Пока пусто. Вставь сообщения и нажми «Разобрать».</div>
-            </div>
-          </section>
-        </div>
-      </div>
-    </section>
   </body>
 </html>

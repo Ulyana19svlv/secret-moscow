@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Входящие - Секретная Москва</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4f1ec;
+        --ink: #1e2522;
+        --muted: #6d746f;
+        --line: #d9d2c8;
+        --panel: #fffaf3;
+        --green: #1f5b4a;
+        --green-2: #2e7c65;
+        --rose: #9f4e5a;
+        --shadow: 0 18px 50px rgba(38, 31, 22, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        letter-spacing: 0;
+      }
+
+      button,
+      textarea {
+        font: inherit;
+      }
+
+      .page {
+        min-height: 100vh;
+        padding: 28px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        max-width: 1180px;
+        margin: 0 auto 22px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--rose);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 10px;
+        font-size: 38px;
+        line-height: 1.04;
+      }
+
+      .lead {
+        max-width: 700px;
+        margin-bottom: 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 42px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--green);
+        font-weight: 800;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(340px, 0.95fr) minmax(340px, 1.05fr);
+        gap: 20px;
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+
+      .panel {
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .input-panel,
+      .output-panel {
+        padding: 20px;
+      }
+
+      .input-panel p,
+      .privacy-note,
+      .meta-line {
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 460px;
+        resize: vertical;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px;
+        background: #fff;
+        color: var(--ink);
+        font: 15px/1.45 ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      button {
+        min-height: 42px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .primary-button {
+        border: 0;
+        padding: 0 16px;
+        background: var(--green);
+        color: #fff;
+        font-weight: 800;
+      }
+
+      .secondary-button {
+        border: 1px solid var(--line);
+        padding: 0 13px;
+        background: #fff;
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      .secondary-button:hover,
+      .back-link:hover {
+        border-color: var(--green-2);
+      }
+
+      .privacy-note {
+        margin: 12px 0 0;
+        font-size: 13px;
+      }
+
+      .output-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .output-head h2 {
+        margin-bottom: 0;
+      }
+
+      .meta-line {
+        margin-bottom: 0;
+      }
+
+      .draft-list {
+        display: grid;
+        gap: 12px;
+        max-height: 620px;
+        overflow: auto;
+        padding-right: 4px;
+      }
+
+      .draft-card,
+      .empty-state {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .draft-card {
+        padding: 14px;
+      }
+
+      .draft-card h3 {
+        margin-bottom: 9px;
+        font-size: 18px;
+      }
+
+      .draft-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-bottom: 10px;
+      }
+
+      .draft-meta span {
+        border-radius: 999px;
+        padding: 5px 8px;
+        background: #efe7dc;
+        color: #4d514d;
+        font-size: 12px;
+      }
+
+      .draft-card pre {
+        margin: 0;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        color: #4a514c;
+        font: 13px/1.45 ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+
+      .empty-state {
+        display: grid;
+        min-height: 260px;
+        place-items: center;
+        padding: 24px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 860px) {
+        .page {
+          padding: 18px;
+        }
+
+        .topbar {
+          display: grid;
+        }
+
+        h1 {
+          font-size: 31px;
+        }
+
+        .workspace {
+          grid-template-columns: 1fr;
+        }
+
+        textarea {
+          min-height: 360px;
+        }
+
+        .draft-list {
+          max-height: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Секретная Москва</p>
+          <h1>Входящие места</h1>
+          <p class="lead">Вставь сюда сообщения из Instagram или Telegram. Разные места лучше отделять пустой строкой, чтобы черновики получились аккуратнее.</p>
+        </div>
+        <a class="back-link" href="./">Назад к карте</a>
+      </header>
+
+      <div class="workspace">
+        <section class="panel input-panel">
+          <p>Сюда можно вставлять ссылки, комментарии Маши, пересланные сообщения и короткие заметки.</p>
+          <textarea id="inboxText" placeholder="Маша: запиши это&#10;https://www.instagram.com/reel/...&#10;&#10;Еще одно место&#10;https://t.me/..."></textarea>
+          <div class="actions">
+            <button class="primary-button" id="parseInboxButton">Разобрать</button>
+            <button class="secondary-button" id="copyInboxButton">Скопировать JSON</button>
+            <button class="secondary-button" id="downloadInboxButton">Скачать JSON</button>
+            <button class="secondary-button" id="clearInboxButton">Очистить</button>
+          </div>
+          <p class="privacy-note">Текст разбирается только в этом браузере и никуда не отправляется.</p>
+        </section>
+
+        <section class="panel output-panel">
+          <div class="output-head">
+            <h2>Черновики</h2>
+            <p class="meta-line" id="inboxCountLabel">0 черновиков</p>
+          </div>
+          <div class="draft-list" id="inboxDraftList">
+            <div class="empty-state">Пока пусто. Вставь сообщения и нажми «Разобрать».</div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const INBOX_URL_RE = /https?:\/\/[^\s)>\]"']+/gi;
+      const state = { drafts: [] };
+
+      const elements = {
+        clearButton: document.querySelector("#clearInboxButton"),
+        copyButton: document.querySelector("#copyInboxButton"),
+        countLabel: document.querySelector("#inboxCountLabel"),
+        downloadButton: document.querySelector("#downloadInboxButton"),
+        draftList: document.querySelector("#inboxDraftList"),
+        parseButton: document.querySelector("#parseInboxButton"),
+        text: document.querySelector("#inboxText")
+      };
+
+      function cleanUrl(url) {
+        return url.trim().replace(/[.,;]+$/, "");
+      }
+
+      function splitBlocks(text) {
+        return text
+          .trim()
+          .split(/\n\s*\n+/)
+          .map((block) => block.split("\n").map((line) => line.trim()).filter(Boolean).join("\n"))
+          .filter(Boolean);
+      }
+
+      function guessCategory(text) {
+        const lower = text.toLowerCase();
+        const checks = [
+          ["рестораны и кафе", ["кафе", "кофе", "ресторан", "бар", "завтрак", "ужин", "еда"]],
+          ["музеи и выставки", ["музей", "выстав", "галере", "павильон", "экспози"]],
+          ["парки и прогулки", ["парк", "сад", "прогул", "набереж", "трамвайчик"]],
+          ["спорт и активность", ["йога", "спорт", "батут", "падел", "фитнес", "клуб"]],
+          ["мастер-классы", ["мастер", "студия", "рисован", "шить", "гончар", "керамик"]],
+          ["пространства", ["пространство", "лофт", "холл", "ателье"]],
+          ["спа и красота", ["спа", "массаж", "салон", "уход"]],
+          ["события", ["событие", "концерт", "игра", "лото", "фестиваль"]]
+        ];
+        const found = checks.find(([, words]) => words.some((word) => lower.includes(word)));
+        return found ? found[0] : "не разобрано";
+      }
+
+      function guessSource(urls) {
+        const joined = urls.join(" ").toLowerCase();
+        if (joined.includes("instagram.com")) return "instagram";
+        if (joined.includes("t.me") || joined.includes("telegram")) return "telegram";
+        return urls.length ? "link" : "text";
+      }
+
+      function titleFromBlock(block, urls) {
+        const lines = block.split("\n").map((line) => line.trim()).filter(Boolean);
+        const nonUrlLine = lines.find((line) => {
+          INBOX_URL_RE.lastIndex = 0;
+          return !INBOX_URL_RE.test(line);
+        });
+        if (nonUrlLine) return nonUrlLine.replace(/^(маша|masha|я|me)\s*:\s*/i, "").slice(0, 90);
+        if (urls[0]) return urls[0].replace(/^https?:\/\//i, "").split("?")[0].slice(0, 90);
+        return "Новое место";
+      }
+
+      async function makeId(text) {
+        const data = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest("SHA-1", data);
+        return "inbox-" + Array.from(new Uint8Array(hash))
+          .slice(0, 6)
+          .map((byte) => byte.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+      async function parseInbox(text) {
+        const createdAt = new Date().toISOString();
+        const drafts = [];
+        for (const block of splitBlocks(text)) {
+          INBOX_URL_RE.lastIndex = 0;
+          const urls = Array.from(new Set((block.match(INBOX_URL_RE) || []).map(cleanUrl)));
+          drafts.push({
+            id: await makeId(block),
+            status: "new",
+            source: guessSource(urls),
+            title: titleFromBlock(block, urls),
+            raw_text: block,
+            urls,
+            category_guess: guessCategory(block),
+            notes: "",
+            created_at: createdAt
+          });
+        }
+        return drafts;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function jsonText() {
+        return JSON.stringify(state.drafts, null, 2);
+      }
+
+      function renderDrafts() {
+        elements.countLabel.textContent = `${state.drafts.length} черновиков`;
+        if (!state.drafts.length) {
+          elements.draftList.innerHTML = '<div class="empty-state">Пока пусто. Вставь сообщения и нажми «Разобрать».</div>';
+          return;
+        }
+
+        elements.draftList.innerHTML = state.drafts.map((draft) => `
+          <article class="draft-card">
+            <h3>${escapeHtml(draft.title)}</h3>
+            <div class="draft-meta">
+              <span>${escapeHtml(draft.source)}</span>
+              <span>${escapeHtml(draft.category_guess)}</span>
+              <span>${escapeHtml(draft.status)}</span>
+            </div>
+            <pre>${escapeHtml(draft.raw_text)}</pre>
+          </article>
+        `).join("");
+      }
+
+      function downloadJson() {
+        const blob = new Blob([jsonText()], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "places_inbox.json";
+        link.click();
+        URL.revokeObjectURL(url);
+      }
+
+      elements.parseButton.addEventListener("click", async () => {
+        state.drafts = await parseInbox(elements.text.value);
+        renderDrafts();
+      });
+
+      elements.copyButton.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(jsonText());
+      });
+
+      elements.downloadButton.addEventListener("click", downloadJson);
+
+      elements.clearButton.addEventListener("click", () => {
+        elements.text.value = "";
+        state.drafts = [];
+        renderDrafts();
+      });
+    </script>
+  </body>
+</html>
