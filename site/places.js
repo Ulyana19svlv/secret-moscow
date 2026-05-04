@@ -698,7 +698,7 @@ window.SECRET_MOSCOW_PLACES = [
     ],
     "description": "Кофейня в деловом районе, удобная для паузы у Москва-Сити.",
     "links": {
-      "instagram": "https://www.instagram.com/zatsepi_coffee/",
+      "instagram": "https://www.instagram.com/zatsepi.msk/",
       "site": "https://zatsepicoffee.ru/"
     },
     "tags": [
