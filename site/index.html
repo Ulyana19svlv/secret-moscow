@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Секретная Москва</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script defer src="./places.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <header class="brand">
+          <div>
+            <p class="eyebrow">личный гид</p>
+            <h1>Секретная Москва</h1>
+          </div>
+          <button class="icon-button" id="randomPlaceButton" title="Случайное место" aria-label="Случайное место">
+            <i data-lucide="shuffle"></i>
+          </button>
+        </header>
+
+        <section class="controls" aria-label="Фильтры">
+          <label class="search-box">
+            <i data-lucide="search"></i>
+            <input id="searchInput" type="search" placeholder="Поиск" />
+          </label>
+          <div class="category-strip" id="categoryStrip"></div>
+        </section>
+
+        <section class="list-panel" aria-label="Места">
+          <div class="list-meta">
+            <span id="countLabel"></span>
+            <button class="text-button" id="resetButton">Сбросить</button>
+          </div>
+          <div class="place-list" id="placeList"></div>
+        </section>
+      </aside>
+
+      <section class="map-area">
+        <div id="map"></div>
+        <div class="map-key-panel" id="mapKeyPanel">
+          <div>
+            <p class="panel-kicker">Яндекс.Карты</p>
+            <h2>Нужен API-ключ карты</h2>
+            <p>Ключ сохраняется только в этом браузере. Получить его можно в кабинете разработчика Яндекса для JavaScript API.</p>
+          </div>
+          <div class="key-row">
+            <input id="mapKeyInput" type="password" placeholder="Yandex Maps API key" />
+            <button id="saveMapKeyButton">Открыть карту</button>
+          </div>
+        </div>
+        <article class="details-panel" id="detailsPanel"></article>
+      </section>
+    </main>
+  </body>
+</html>
