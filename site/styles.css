@@ -20,6 +20,7 @@
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -39,13 +40,16 @@ textarea {
 .app-shell {
   display: grid;
   grid-template-columns: minmax(360px, 420px) 1fr;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
   border-right: 1px solid var(--line);
   background: var(--panel);
 }
@@ -224,7 +228,9 @@ h1 {
 .map-area {
   position: relative;
   min-width: 0;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
   background: #dfe5df;
 }
 
