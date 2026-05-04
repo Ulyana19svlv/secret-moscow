@@ -6,7 +6,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Ленинградский проспект, 40, Москва",
     coords: [55.7936, 37.5516],
     description: "Исторический дворец в Петровском парке и атмосферный повод устроить торжественное чаепитие.",
-    links: { instagram: "https://www.instagram.com/reel/DUU2vNLDJrL/?igsh=cjI4bXM4Mjk2a2E4", site: "https://petroffpalacehotel.ru/" },
+    links: { instagram: "https://www.instagram.com/hotelpetroffpalace/", site: "https://petroffpalacehotel.ru/" },
     tags: ["история", "красиво", "чай"]
   },
   {
@@ -46,7 +46,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "проспект Маршала Жукова, 4, Москва",
     coords: [55.7777, 37.5142],
     description: "Батутный центр для активного дня: прыжки, движение и спортивное настроение.",
-    links: { site: "https://doaflip.ru/" },
+    links: { instagram: "https://www.instagram.com/doaflip.ru/", site: "https://doaflip.ru/" },
     tags: ["активно", "с друзьями", "спорт"]
   },
   {
@@ -136,7 +136,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Бумажный проезд, 4, Москва",
     coords: [55.7879, 37.5868],
     description: "Новое русское спа с массажами, уходами и программами для восстановления.",
-    links: { site: "https://divnica.spa/" },
+    links: { instagram: "https://www.instagram.com/divnica.spa/", site: "https://divnica.spa/" },
     tags: ["спа", "массаж", "релакс"]
   },
   {
@@ -166,7 +166,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Садовая-Самотёчная улица, 11, Москва",
     coords: [55.7732, 37.6146],
     description: "Гончарная мастерская для групповых занятий и спокойного творческого вечера.",
-    links: { site: "https://frenkelceramics.ru/" },
+    links: { instagram: "https://www.instagram.com/frenkel_ceramics/", site: "https://frenkelceramics.ru/" },
     tags: ["керамика", "мастер-класс", "руками"]
   },
   {
@@ -176,7 +176,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Пресненская набережная, 10с2, Москва",
     coords: [55.7475, 37.5378],
     description: "Кофейня в деловом районе, удобная для паузы у Москва-Сити.",
-    links: { site: "https://zatsepicoffee.ru/" },
+    links: { instagram: "https://www.instagram.com/zatsepi_coffee/", site: "https://zatsepicoffee.ru/" },
     tags: ["кофе", "сити", "пауза"]
   },
   {
@@ -196,7 +196,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "проспект Мира, 26с1, Москва",
     coords: [55.7788, 37.6351],
     description: "Старейший ботанический сад России, хорош для цветов, оранжерей и спокойной прогулки.",
-    links: { site: "https://www.hortus.msu.ru/" },
+    links: { instagram: "https://www.instagram.com/hortus_ru/", site: "https://www.hortus.msu.ru/" },
     tags: ["сад", "цветы", "прогулка"]
   },
   {
@@ -266,7 +266,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Спиридоновка, 27/24, Москва",
     coords: [55.7612, 37.5884],
     description: "Йога-студия у Патриарших для практики, мягкого восстановления и девичников.",
-    links: { instagram: "https://www.instagram.com/up2yoga?igsh=bWR4ejUxandlbW8z", site: "https://uptoyoga.ru/" },
+    links: { instagram: "https://www.instagram.com/up2yoga/", site: "https://uptoyoga.ru/" },
     tags: ["йога", "патрики", "релакс"]
   },
   {
@@ -286,7 +286,7 @@ window.SECRET_MOSCOW_PLACES = [
     address: "Крымский Вал, 9с74, Москва",
     coords: [55.7205, 37.5967],
     description: "Ресторан в Нескучном саду для завтрака, обеда после прогулки или летней веранды.",
-    links: { instagram: "https://www.instagram.com/domikvsadu?igsh=MXkweDI1bmNxY2N5eg==", site: "https://domikvsadu.com/neskuchny" },
+    links: { instagram: "https://www.instagram.com/domikvsadu/", site: "https://domikvsadu.com/neskuchny" },
     tags: ["сад", "веранда", "завтрак"]
   },
   {
