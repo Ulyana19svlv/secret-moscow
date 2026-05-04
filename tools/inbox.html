@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Приемка мест</title>
+    <style>
+      :root {
+        --bg: #f5f1ea;
+        --ink: #202521;
+        --muted: #6e746f;
+        --line: #d8d0c5;
+        --panel: #fffaf3;
+        --green: #1f5b4a;
+        --rose: #9f4e5a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: minmax(320px, 0.95fr) 1.05fr;
+        gap: 22px;
+        min-height: 100vh;
+        padding: 28px;
+      }
+
+      section {
+        min-width: 0;
+      }
+
+      .panel {
+        height: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 22px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--rose);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 12px;
+        font-size: 34px;
+        line-height: 1.05;
+      }
+
+      p {
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 420px;
+        resize: vertical;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px;
+        background: #fff;
+        color: var(--ink);
+        font: 15px/1.45 ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      button {
+        min-height: 42px;
+        border: 1px solid var(--green);
+        border-radius: 8px;
+        padding: 0 14px;
+        background: var(--green);
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        background: #fff;
+        color: var(--green);
+      }
+
+      .draft-list {
+        display: grid;
+        gap: 12px;
+        max-height: calc(100vh - 154px);
+        overflow: auto;
+        padding-right: 4px;
+      }
+
+      .draft {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        padding: 14px;
+      }
+
+      .draft h2 {
+        margin-bottom: 8px;
+        font-size: 18px;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .meta span {
+        border-radius: 999px;
+        padding: 6px 9px;
+        background: #efe7dc;
+        color: #4e554f;
+        font-size: 13px;
+      }
+
+      .draft pre {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        margin: 0;
+        color: #4a514c;
+        font: 13px/1.45 ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+
+      .empty {
+        display: grid;
+        min-height: 260px;
+        place-items: center;
+        border: 1px dashed var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 860px) {
+        main {
+          grid-template-columns: 1fr;
+          padding: 16px;
+        }
+
+        .draft-list {
+          max-height: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="panel">
+        <p class="eyebrow">Секретная Москва</p>
+        <h1>Приемка входящих</h1>
+        <p>
+          Вставь сюда пачку сообщений из Instagram или Telegram. Разделяй разные места пустой строкой:
+          так черновики будут чище.
+        </p>
+        <textarea id="inboxText" placeholder="Маша: запиши это&#10;https://www.instagram.com/reel/...&#10;&#10;Еще одно место&#10;https://t.me/..."></textarea>
+        <div class="actions">
+          <button id="parseButton">Разобрать</button>
+          <button class="secondary" id="downloadButton">Скачать JSON</button>
+          <button class="secondary" id="copyButton">Скопировать JSON</button>
+          <button class="secondary" id="clearButton">Очистить</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">Черновики</p>
+        <div id="draftList" class="draft-list">
+          <div class="empty">Пока пусто. Вставь сообщения и нажми «Разобрать».</div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const URL_RE = /https?:\/\/[^\s)>\]"']+/gi;
+      let drafts = [];
+
+      function cleanUrl(url) {
+        return url.trim().replace(/[.,;]+$/, "");
+      }
+
+      function splitBlocks(text) {
+        return text
+          .trim()
+          .split(/\n\s*\n+/)
+          .map((block) => block.split("\n").map((line) => line.trim()).filter(Boolean).join("\n"))
+          .filter(Boolean);
+      }
+
+      function guessCategory(text) {
+        const lower = text.toLowerCase();
+        const checks = [
+          ["рестораны и кафе", ["кафе", "кофе", "ресторан", "бар", "завтрак", "ужин", "еда"]],
+          ["музеи и выставки", ["музей", "выстав", "галере", "павильон", "экспози"]],
+          ["парки и прогулки", ["парк", "сад", "прогул", "набереж", "трамвайчик"]],
+          ["спорт и активность", ["йога", "спорт", "батут", "падел", "фитнес", "клуб"]],
+          ["мастер-классы", ["мастер", "студия", "рисован", "шить", "гончар", "керамик"]],
+          ["пространства", ["пространство", "лофт", "холл", "ателье"]],
+          ["спа и красота", ["спа", "массаж", "салон", "уход"]],
+          ["события", ["событие", "концерт", "игра", "лото", "фестиваль"]]
+        ];
+        const found = checks.find(([, words]) => words.some((word) => lower.includes(word)));
+        return found ? found[0] : "не разобрано";
+      }
+
+      function guessSource(urls) {
+        const joined = urls.join(" ").toLowerCase();
+        if (joined.includes("instagram.com")) return "instagram";
+        if (joined.includes("t.me") || joined.includes("telegram")) return "telegram";
+        return urls.length ? "link" : "text";
+      }
+
+      function titleFromBlock(block, urls) {
+        const lines = block.split("\n").map((line) => line.trim()).filter(Boolean);
+        const nonUrlLine = lines.find((line) => !URL_RE.test(line));
+        URL_RE.lastIndex = 0;
+        if (nonUrlLine) return nonUrlLine.replace(/^(маша|masha|я|me)\s*:\s*/i, "").slice(0, 90);
+        if (urls[0]) return urls[0].replace(/^https?:\/\//i, "").split("?")[0].slice(0, 90);
+        return "Новое место";
+      }
+
+      async function makeId(text) {
+        const data = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest("SHA-1", data);
+        return "inbox-" + Array.from(new Uint8Array(hash)).slice(0, 6).map((byte) => byte.toString(16).padStart(2, "0")).join("");
+      }
+
+      async function parseInbox(text) {
+        const blocks = splitBlocks(text);
+        const createdAt = new Date().toISOString();
+        const parsed = [];
+        for (const block of blocks) {
+          const urls = Array.from(new Set((block.match(URL_RE) || []).map(cleanUrl)));
+          parsed.push({
+            id: await makeId(block),
+            status: "new",
+            source: guessSource(urls),
+            title: titleFromBlock(block, urls),
+            raw_text: block,
+            urls,
+            category_guess: guessCategory(block),
+            notes: "",
+            created_at: createdAt
+          });
+        }
+        return parsed;
+      }
+
+      function renderDrafts() {
+        const list = document.querySelector("#draftList");
+        if (!drafts.length) {
+          list.innerHTML = '<div class="empty">Пока пусто. Вставь сообщения и нажми «Разобрать».</div>';
+          return;
+        }
+        list.innerHTML = drafts.map((draft) => `
+          <article class="draft">
+            <h2>${draft.title}</h2>
+            <div class="meta">
+              <span>${draft.source}</span>
+              <span>${draft.category_guess}</span>
+              <span>${draft.status}</span>
+            </div>
+            <pre>${draft.raw_text}</pre>
+          </article>
+        `).join("");
+      }
+
+      function jsonText() {
+        return JSON.stringify(drafts, null, 2);
+      }
+
+      document.querySelector("#parseButton").addEventListener("click", async () => {
+        drafts = await parseInbox(document.querySelector("#inboxText").value);
+        renderDrafts();
+      });
+
+      document.querySelector("#downloadButton").addEventListener("click", () => {
+        const blob = new Blob([jsonText()], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "places_inbox.json";
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+
+      document.querySelector("#copyButton").addEventListener("click", async () => {
+        await navigator.clipboard.writeText(jsonText());
+      });
+
+      document.querySelector("#clearButton").addEventListener("click", () => {
+        document.querySelector("#inboxText").value = "";
+        drafts = [];
+        renderDrafts();
+      });
+    </script>
+  </body>
+</html>
