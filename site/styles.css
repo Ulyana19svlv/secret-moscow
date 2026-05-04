@@ -20,7 +20,9 @@
 html,
 body {
   height: 100%;
+  width: 100%;
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 body {
@@ -38,16 +40,20 @@ textarea {
 }
 
 .app-shell {
+  position: fixed;
+  inset: 0;
   display: grid;
   grid-template-columns: minmax(360px, 420px) 1fr;
-  height: 100vh;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 0;
   overflow: hidden;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
   min-height: 0;
   overflow: hidden;
   border-right: 1px solid var(--line);
@@ -228,7 +234,7 @@ h1 {
 .map-area {
   position: relative;
   min-width: 0;
-  height: 100vh;
+  height: 100dvh;
   min-height: 0;
   overflow: hidden;
   background: #dfe5df;
@@ -394,16 +400,19 @@ svg {
 @media (max-width: 920px) {
   .app-shell {
     grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 48dvh) minmax(0, 52dvh);
   }
 
   .sidebar {
-    min-height: 48vh;
+    height: auto;
+    min-height: 0;
     border-right: 0;
     border-bottom: 1px solid var(--line);
   }
 
   .map-area {
-    min-height: 72vh;
+    height: auto;
+    min-height: 0;
   }
 
   .place-list {
