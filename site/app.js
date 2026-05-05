@@ -3,7 +3,7 @@ const DEFAULT_YANDEX_MAPS_KEY = "d0e7278b-1c42-448b-91c8-e17a315bbc82";
 const categories = ["все", ...Array.from(new Set(places.map((place) => place.category)))];
 const state = {
   category: "все",
-  detailsHidden: false,
+  detailsHidden: window.matchMedia("(max-width: 620px)").matches,
   search: "",
   selectedId: places[0].id,
   map: null,
