@@ -366,24 +366,6 @@ body.mobile-map-open .mobile-view-toggle {
   text-decoration: none;
 }
 
-.row-media.has-thumbnail {
-  background: #151718;
-}
-
-.row-media.has-thumbnail::before {
-  content: "";
-  position: absolute;
-  inset: -12px;
-  z-index: 0;
-  background-image:
-    linear-gradient(rgba(255, 253, 247, 0.18), rgba(255, 253, 247, 0.18)),
-    var(--thumb-url);
-  background-position: center;
-  background-size: cover;
-  filter: blur(10px);
-  transform: scale(1.04);
-}
-
 .row-media img,
 .row-media video,
 .details-media img,
@@ -391,12 +373,6 @@ body.mobile-map-open .mobile-view-toggle {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.row-media.has-thumbnail img {
-  position: relative;
-  z-index: 1;
-  object-fit: contain;
 }
 
 .instagram-embed {
@@ -1074,6 +1050,19 @@ svg {
     align-self: stretch;
     aspect-ratio: 16 / 9;
     max-height: none;
+  }
+
+  .row-media.has-thumbnail {
+    display: block;
+    aspect-ratio: auto;
+    background: var(--color-surface-strong);
+  }
+
+  .row-media.has-thumbnail img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: initial;
   }
 
   .row-media-label {
