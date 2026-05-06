@@ -1255,5 +1255,39 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "morning-coffee-club",
+    "title": "Morning Coffee Club",
+    "category": "события",
+    "address": "Москва, локация зависит от события",
+    "coords": [
+      55.7558,
+      37.6176
+    ],
+    "description": "Музыкальное кофейное комьюнити с утренними встречами, вечеринками и разными московскими локациями.",
+    "links": {
+      "instagram": "https://www.instagram.com/p/DX9U8gJDcvE/?img_index=4&igsh=MXJ0bDg1Z3hhdDJ4Zg==",
+      "telegram": "https://t.me/morningcoffeeclub"
+    },
+    "media": {
+      "type": "link",
+      "url": "https://www.instagram.com/p/DX9U8gJDcvE/?img_index=4&igsh=MXJ0bDg1Z3hhdDJ4Zg==",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "кофе",
+      "музыка",
+      "комьюнити"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 7.1,
+        "minutes": 25,
+        "note": "локация меняется, время примерное до центра"
+      },
+      "metro": []
+    }
   }
 ];
