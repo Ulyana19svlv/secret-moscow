@@ -86,6 +86,60 @@ function linkToYandex(place) {
   return `https://yandex.ru/maps/?text=${text}`;
 }
 
+function getPlaceMedia(place) {
+  if (place.media) return place.media;
+  if (place.links?.instagram) {
+    return {
+      type: "link",
+      url: place.links.instagram,
+      label: "Instagram / Reels",
+      icon: "instagram"
+    };
+  }
+  if (place.links?.telegram) {
+    return {
+      type: "link",
+      url: place.links.telegram,
+      label: "Telegram",
+      icon: "send"
+    };
+  }
+  return {
+    type: "empty",
+    label: "Фото / Reels",
+    icon: "image-plus"
+  };
+}
+
+function renderMediaContent(place, variant = "row") {
+  const media = getPlaceMedia(place);
+  const labelClass = variant === "details" ? "details-media-label" : "row-media-label";
+  const icon = media.icon || (media.type === "video" ? "play" : "image");
+
+  if (media.type === "image" && media.src) {
+    return `<img src="${media.src}" alt="${media.alt || place.title}" loading="lazy" />`;
+  }
+
+  if (media.type === "video" && media.src) {
+    return `<video src="${media.src}" ${variant === "details" ? "controls" : ""} muted playsinline preload="metadata"></video>`;
+  }
+
+  const label = media.label || "Медиа";
+  const content = `<span class="${labelClass}"><i data-lucide="${icon}"></i><span>${label}</span></span>`;
+  if (media.url && variant === "details") {
+    return `<a href="${media.url}" target="_blank" rel="noreferrer">${content}</a>`;
+  }
+  return content;
+}
+
+function renderRowMedia(place) {
+  return `<span class="row-media">${renderMediaContent(place, "row")}</span>`;
+}
+
+function renderDetailsMedia(place) {
+  return `<div class="details-media">${renderMediaContent(place, "details")}</div>`;
+}
+
 function formatDrive(access) {
   if (!access || !access.fromHome) return "маршрут уточнить";
   return `~${access.fromHome.minutes} мин · ${access.fromHome.km} км`;
@@ -146,6 +200,7 @@ function renderList() {
     ].filter(Boolean).slice(0, 2).join(" · ");
     return `
       <button class="place-row ${active}" data-id="${place.id}" data-accent="${meta.accent}">
+        ${renderRowMedia(place)}
         <span class="row-kicker"><i data-lucide="${meta.icon}"></i>${place.category}</span>
         <span class="row-title">${place.title}</span>
         <span class="row-description">${place.description}</span>
@@ -199,6 +254,7 @@ function renderDetails() {
     </div>
     <h2 id="detailsTitle">${place.title}</h2>
     <p class="address"><i data-lucide="map-pin"></i>${place.address}</p>
+    ${renderDetailsMedia(place)}
     <div class="access-strip">
       <div>
         <span><i data-lucide="car"></i>Из дома</span>

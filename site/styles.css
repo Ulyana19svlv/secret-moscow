@@ -11,18 +11,33 @@ body {
   position: fixed;
   inset: 0;
   display: grid;
+  grid-template-columns: minmax(500px, 600px) minmax(360px, 1fr);
+  gap: 24px;
   width: 100vw;
   height: 100vh;
   min-height: 100vh;
   overflow: hidden;
+  padding: 24px;
   background: #dfe8dc;
 }
 
 .map-area {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  height: clamp(300px, 36vh, 420px);
+  overflow: hidden;
+  align-self: start;
+  justify-self: start;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: #dfe8dc;
+  box-shadow: var(--shadow-lg);
+}
+
+.app-shell > * {
+  min-width: 0;
 }
 
 #map {
@@ -31,16 +46,15 @@ body {
 }
 
 .sidebar {
-  position: absolute;
-  left: 24px;
-  top: 24px;
-  bottom: 24px;
+  position: relative;
   z-index: 8;
   display: grid;
   grid-template-rows: auto auto minmax(0, 1fr);
-  width: min(400px, calc(100vw - 48px));
+  width: 100%;
+  height: calc(100vh - 48px);
   min-height: 0;
-  overflow: hidden;
+  min-width: 0;
+  overflow: visible;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-lg);
   background: rgba(255, 253, 247, 0.94);
@@ -165,11 +179,11 @@ h1 {
 
 .category-strip {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: 12px;
-  overflow-x: auto;
-  padding-bottom: 6px;
+  overflow: visible;
+  padding-bottom: 0;
 }
 
 .category-chip,
@@ -186,9 +200,11 @@ h1 {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 0 10px;
+  min-height: 44px;
+  padding: 0 12px;
   font-size: 12px;
   font-weight: 800;
+  line-height: 1.15;
   box-shadow: var(--shadow-sm);
   transition: transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 160ms ease;
 }
@@ -244,7 +260,7 @@ h1 {
   gap: 12px;
   min-height: 0;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: visible;
   padding: 0 10px 4px 0;
   transition: opacity 140ms ease, transform 180ms var(--ease-out);
 }
@@ -257,12 +273,19 @@ h1 {
 .place-row {
   position: relative;
   display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  grid-template-areas:
+    "media kicker"
+    "media title"
+    "media description"
+    "media access"
+    "media footer";
   gap: 9px;
   width: 100%;
   min-width: 0;
-  min-height: 128px;
+  min-height: 156px;
   padding: 13px;
-  overflow: clip;
+  overflow: hidden;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface-strong);
@@ -277,6 +300,50 @@ h1 {
   position: relative;
   z-index: 1;
   min-width: 0;
+}
+
+.row-media {
+  grid-area: media;
+  display: grid;
+  min-width: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  place-items: center;
+  align-self: stretch;
+  border: 2px solid var(--color-border);
+  border-radius: calc(var(--radius-md) - 2px);
+  background:
+    radial-gradient(circle at 25% 20%, rgba(217, 255, 72, 0.85), transparent 36%),
+    radial-gradient(circle at 80% 80%, rgba(255, 79, 123, 0.28), transparent 38%),
+    var(--color-warm);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.row-media img,
+.row-media video,
+.details-media img,
+.details-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.row-media-label {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.row-media-label svg {
+  width: 22px;
+  height: 22px;
+  color: var(--color-primary);
 }
 
 .place-row:hover {
@@ -298,6 +365,7 @@ h1 {
 }
 
 .row-kicker {
+  grid-area: kicker;
   display: inline-flex;
   width: fit-content;
   align-items: center;
@@ -317,6 +385,7 @@ h1 {
 }
 
 .row-title {
+  grid-area: title;
   display: block;
   width: 100%;
   font-family: var(--font-body);
@@ -330,6 +399,7 @@ h1 {
 }
 
 .row-description {
+  grid-area: description;
   display: -webkit-box;
   overflow: hidden;
   color: #3f433f;
@@ -340,6 +410,7 @@ h1 {
 }
 
 .row-access {
+  grid-area: access;
   display: grid;
   gap: 5px;
   padding-top: 2px;
@@ -361,6 +432,7 @@ h1 {
 }
 
 .row-footer {
+  grid-area: footer;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -468,11 +540,12 @@ h1 {
 }
 
 .details-panel {
+  position: fixed;
   right: 24px;
-  top: 24px;
+  top: calc(24px + clamp(300px, 36vh, 420px) + 18px);
   bottom: 24px;
-  width: min(420px, calc(100% - 432px));
-  min-width: 360px;
+  width: min(520px, calc(100vw - 680px));
+  min-width: 420px;
   overflow-y: auto;
   padding: 20px;
   transform: translateX(0);
@@ -518,6 +591,47 @@ h1 {
 .details-art[data-accent="pink"] { background: #ff8bd1; }
 .details-art[data-accent="peach"] { background: #ffb28b; }
 .details-art[data-accent="amber"] { background: var(--color-warm); }
+
+.details-media {
+  display: grid;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  place-items: center;
+  margin: 14px 0 16px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 79, 123, 0.32), transparent 35%),
+    radial-gradient(circle at 86% 28%, rgba(18, 90, 255, 0.18), transparent 32%),
+    radial-gradient(circle at 58% 88%, rgba(217, 255, 72, 0.75), transparent 38%),
+    var(--color-surface-strong);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+}
+
+.details-media a {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.details-media-label {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 18px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.details-media-label svg {
+  width: 30px;
+  height: 30px;
+  color: var(--color-primary);
+}
 
 .details-panel h2 {
   font-family: var(--font-display);
@@ -703,18 +817,22 @@ svg {
 
   .app-shell {
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
     width: 100%;
     max-width: 100%;
     min-height: 100vh;
     height: auto;
+    padding: 0;
     overflow-x: hidden;
     overflow-y: visible;
   }
 
   .mobile-view-toggle {
     position: absolute;
-    left: 170px;
-    right: auto;
+    left: auto;
+    right: 18px;
     top: 155px;
     bottom: auto;
     z-index: 30;
@@ -754,9 +872,9 @@ svg {
     top: auto;
     bottom: auto;
     display: grid;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: clip;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
     height: auto;
     min-height: 100dvh;
     border: 0;
@@ -780,7 +898,7 @@ svg {
   }
 
   .controls {
-    padding: 14px 46px 14px 18px;
+    padding: 14px 18px;
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -788,20 +906,21 @@ svg {
   }
 
   .search-box {
-    width: 100%;
-    max-width: 100%;
+    width: calc(100vw - 36px);
+    max-width: calc(100vw - 36px);
   }
 
   .category-strip {
-    flex-wrap: nowrap;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    padding: 0 2px 8px 0;
+    flex-wrap: wrap;
+    width: calc(100vw - 36px);
+    max-width: calc(100vw - 36px);
+    overflow: visible;
+    padding: 0 0 8px;
   }
 
   .category-chip {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
+    max-width: 100%;
   }
 
   .category-chip,
@@ -818,17 +937,17 @@ svg {
   }
 
   .list-panel {
-    padding: 0 46px 30px 18px;
-    width: 100%;
-    max-width: 100%;
+    padding: 0 18px 30px;
+    width: 100vw;
+    max-width: 100vw;
     min-width: 0;
     box-sizing: border-box;
   }
 
   .list-meta,
   .place-list {
-    width: 100%;
-    max-width: 100%;
+    width: calc(100vw - 36px);
+    max-width: calc(100vw - 36px);
   }
 
   .list-meta {
@@ -843,10 +962,28 @@ svg {
   }
 
   .place-row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "media"
+      "kicker"
+      "title"
+      "description"
+      "access"
+      "footer";
     min-height: 176px;
-    width: 100%;
-    max-width: 100%;
-    overflow: visible;
+    width: calc(100vw - 36px);
+    max-width: calc(100vw - 36px);
+    overflow: hidden;
+  }
+
+  .row-media {
+    align-self: stretch;
+    aspect-ratio: 16 / 9;
+    max-height: 150px;
+  }
+
+  .row-media-label {
+    font-size: 11px;
   }
 
   .row-title,
@@ -856,7 +993,11 @@ svg {
   }
 
   .row-title {
-    font-size: 18px;
+    font-size: 15px;
+  }
+
+  .row-description {
+    -webkit-line-clamp: 2;
   }
 
   .details-panel h2 {
