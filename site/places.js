@@ -54,6 +54,12 @@ window.SECRET_MOSCOW_PLACES = [
       "instagram": "https://www.instagram.com/tatooine.rest/",
       "site": "https://tatooine.rest/"
     },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/p/DUBTWj6DAZe/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
     "tags": [
       "ужин",
       "атмосферно",
