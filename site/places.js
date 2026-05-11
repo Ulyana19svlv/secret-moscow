@@ -1594,5 +1594,52 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "alaska-gastrobar",
+    "title": "Гастробар «Аляска»",
+    "category": "рестораны и кафе",
+    "address": "Бобров переулок, 4с1, Москва",
+    "coords": [
+      55.7653315,
+      37.6341394
+    ],
+    "description": "Гастробар в центре Москвы с морепродуктами, блюдами на огне, домашним хлебом и камерной исторической атмосферой.",
+    "links": {
+      "instagram": "https://www.instagram.com/alaska_bar_moskva/",
+      "site": "https://alaska.moscow/?ysclid=mp1cjw0u1653420377"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DW_qjY9sV4t/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "морепродукты",
+      "ужин",
+      "центр"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 7.3,
+        "minutes": 25,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Тургеневская",
+          "distanceKm": 0.5
+        },
+        {
+          "name": "Чистые пруды",
+          "distanceKm": 0.6
+        },
+        {
+          "name": "Сретенский бульвар",
+          "distanceKm": 0.6
+        }
+      ]
+    }
   }
 ];
