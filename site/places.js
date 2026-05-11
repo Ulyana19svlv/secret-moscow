@@ -1547,5 +1547,52 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "dvor-kultur",
+    "title": "Двор Культур",
+    "category": "рестораны и кафе",
+    "address": "улица Сретенка, 25, Москва",
+    "coords": [
+      55.7697,
+      37.6322
+    ],
+    "description": "Ресторан на Сретенке с камерной атмосферой, завтраками, ужинами и дворовым настроением в центре Москвы.",
+    "links": {
+      "instagram": "https://www.instagram.com/dom.kultur/",
+      "site": "https://taplink.cc/dom_kultur"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/p/DYEsptSosVh/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "ужин",
+      "центр",
+      "атмосферно"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 7.7,
+        "minutes": 25,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Сухаревская",
+          "distanceKm": 0.2
+        },
+        {
+          "name": "Тургеневская",
+          "distanceKm": 0.7
+        },
+        {
+          "name": "Чистые пруды",
+          "distanceKm": 0.8
+        }
+      ]
+    }
   }
 ];
