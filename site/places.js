@@ -1689,5 +1689,52 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "photoppix-booth",
+    "title": "Фотобудка photoppix",
+    "category": "пространства",
+    "address": "Малый Палашёвский переулок, 6, Москва",
+    "coords": [
+      55.7651685,
+      37.602602
+    ],
+    "description": "Фотобудка в центре Москвы для быстрых атмосферных кадров, спонтанных фотосессий и красивых карточек на память.",
+    "links": {
+      "instagram": "https://www.instagram.com/photoppix/",
+      "site": "https://linktr.ee/photoppix"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DXjMatFoFce/?igsh=MWowdm5rMGxtemQxNw%3D%3D",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "фото",
+      "центр",
+      "на память"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 5.6,
+        "minutes": 20,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Пушкинская",
+          "distanceKm": 0.5
+        },
+        {
+          "name": "Тверская",
+          "distanceKm": 0.6
+        },
+        {
+          "name": "Чеховская",
+          "distanceKm": 0.7
+        }
+      ]
+    }
   }
 ];
