@@ -1457,5 +1457,48 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "grande-bibliotheca",
+    "title": "GRANDE bibliotheca",
+    "category": "рестораны и кафе",
+    "address": "1-я улица Ямского Поля, 1 к1, Москва",
+    "coords": [
+      55.7793,
+      37.5817
+    ],
+    "description": "Элегантный ресторан Grande by Friends Forever в ЖК Slava: завтраки, десерты и атмосферный ужин в формате bibliotheca.",
+    "links": {
+      "instagram": "https://www.instagram.com/grande_by_friendsforever/",
+      "site": "https://grandefriendsforever.ru/bibliotheca"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DX3xN_kNx2Q/?igsh=MXUzdDZkeG9vMzBxaA==",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "ужин",
+      "десерты",
+      "атмосферно"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 6.9,
+        "minutes": 22,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Белорусская",
+          "distanceKm": 0.6
+        },
+        {
+          "name": "Менделеевская",
+          "distanceKm": 1.3
+        }
+      ]
+    }
   }
 ];
