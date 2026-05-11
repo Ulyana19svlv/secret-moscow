@@ -1425,7 +1425,7 @@ window.SECRET_MOSCOW_PLACES = [
     ],
     "description": "Иммерсивный театр, где действие происходит вокруг зрителя и внутри его воображения.",
     "links": {
-      "instagram": "https://www.instagram.com/reel/DVGtXuRCGLg/",
+      "instagram": "https://www.instagram.com/morpheus.show/",
       "telegram": "https://t.me/morpheus_theatre",
       "site": "https://morpheus-show.ru/"
     },
