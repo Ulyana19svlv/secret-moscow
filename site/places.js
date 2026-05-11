@@ -1370,5 +1370,48 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "nosugar-gruzinsky-val",
+    "title": "NoSugar",
+    "category": "рестораны и кафе",
+    "address": "Грузинский Вал, 11с4, Москва",
+    "coords": [
+      55.7757,
+      37.5824
+    ],
+    "description": "Кафе-кондитерская у Белорусской с десертами, завтраками и блюдами без сахара.",
+    "links": {
+      "instagram": "https://www.instagram.com/nosugar.moscow/",
+      "site": "https://nosugarbakery.ru/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DQ8o4eQCMzV/?igsh=ZTN3YXo0MmlkMDRl",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "десерты",
+      "завтрак",
+      "без сахара"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 6.7,
+        "minutes": 20,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Белорусская",
+          "distanceKm": 0.2
+        },
+        {
+          "name": "Маяковская",
+          "distanceKm": 1.2
+        }
+      ]
+    }
   }
 ];
