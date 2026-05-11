@@ -1736,5 +1736,51 @@ window.SECRET_MOSCOW_PLACES = [
         }
       ]
     }
+  },
+  {
+    "id": "7korpus-art-cluster",
+    "title": "7korpus",
+    "category": "пространства",
+    "address": "Большой Трёхсвятительский переулок, 2/1с7, Москва",
+    "coords": [
+      55.7546804,
+      37.6455104
+    ],
+    "description": "Винтажный арт-кластер из 11 проектов с фотолабораторией, локальными проектами и атмосферой творческого двора.",
+    "links": {
+      "instagram": "https://www.instagram.com/7korpus?igsh=MWN5N2cwNGIwYXZ0cA%3D%3D"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/C8rhDaiCF7A/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "винтаж",
+      "фотолаборатория",
+      "арт-кластер"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 7.7,
+        "minutes": 25,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Китай-город",
+          "distanceKm": 0.9
+        },
+        {
+          "name": "Чкаловская",
+          "distanceKm": 1
+        },
+        {
+          "name": "Курская",
+          "distanceKm": 1.1
+        }
+      ]
+    }
   }
 ];
