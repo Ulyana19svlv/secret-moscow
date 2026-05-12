@@ -2190,6 +2190,39 @@ window.SECRET_MOSCOW_PLACES = [
     }
   },
   {
+    "id": "romantsevskie-gory-konduki",
+    "title": "Романцевские горы",
+    "category": "парки и прогулки",
+    "city": "Тульская область",
+    "address": "Кондуки, Узловский район, Тульская область",
+    "coords": [
+      53.849196,
+      38.359896
+    ],
+    "description": "Голубые озера и песчаные терриконы на месте бывших угольных карьеров: почти марсианские виды, прогулки и выезд на целый день.",
+    "links": {
+      "site": "https://mag.russpass.ru/rubric/napravlenija/konduki-golubye-ozera-tulskoj-oblasti?ysclid=mp38b84296667049307"
+    },
+    "media": {
+      "type": "image",
+      "src": "https://s3.russpass.ru/rp-mag-public-prod/images/Konduki.format-w.width-2440.format-webp.webpquality-100.webp",
+      "alt": "Романцевские горы и голубые озера в Кондуках"
+    },
+    "tags": [
+      "выезд на день",
+      "озера",
+      "виды"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 270,
+        "minutes": 240,
+        "note": "примерно из Москвы, это поездка на день"
+      },
+      "metro": []
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
