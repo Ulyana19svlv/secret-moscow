@@ -19,7 +19,7 @@
 - Основная ветка: `main`
 - Публичная главная: `https://ulyana19svlv.github.io/family-hub/`
 - Публичная база мест: `https://ulyana19svlv.github.io/family-hub/site/`
-- Актуальная cache-bust ссылка после последнего изменения: `https://ulyana19svlv.github.io/family-hub/site/?v=calm-34`
+- Актуальная cache-bust ссылка после последнего изменения: `https://ulyana19svlv.github.io/family-hub/site/?v=calm-35`
 
 Важно: после изменений в HTML/CSS/JS обычно повышать `?v=calm-N`, чтобы браузер и телефон не держали старый кэш.
 
@@ -39,7 +39,7 @@
 
 На 14 мая 2026:
 
-- Всего мест: `54`.
+- Всего мест: `55`.
 - Города: `Москва`, `Санкт-Петербург`, `Тульская область`.
 - У всех мест должно быть поле `city`.
 - По умолчанию открывается город `Москва`.
@@ -112,15 +112,14 @@
 
 Последнее добавленное место:
 
-- `На даче шефа`
+- `Kuznya Cruise`
 - Город: `Москва`
-- Категория: `рестораны и кафе`
-- Адрес: `Ожигово, Москва`
-- Координаты: `[55.4618196, 36.8860962]`
-- Instagram: `https://www.instagram.com/nadachechefa?igsh=NnlieGJmbGhpaHJs`
-- Telegram: `https://t.me/nadacheshefa`
-- Reels: `https://www.instagram.com/reel/DQ14usMiJgH/`
-- Важно: загородный chef's table Дмитрия Парикова, средний чек около `25000`, телефон `+7 903 117-66-78`.
+- Категория: `парки и прогулки`
+- Адрес: `Причал «Крымский Мост», Москва`
+- Координаты: `[55.732449, 37.596006]`
+- Instagram: `https://www.instagram.com/kuznyacruisemsk?igsh=d2psZnY2cG8zZjJ0`
+- Сайт: `https://cruise2.ru/`
+- Reels: `https://www.instagram.com/reel/DOJg0wcDJSR/`
 
 ## Дизайн-направление
 

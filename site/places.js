@@ -2306,6 +2306,54 @@ window.SECRET_MOSCOW_PLACES = [
     }
   },
   {
+    "id": "kuznya-cruise-krymsky-most",
+    "title": "Kuznya Cruise",
+    "category": "парки и прогулки",
+    "city": "Москва",
+    "address": "Причал «Крымский Мост», Москва",
+    "coords": [
+      55.732449,
+      37.596006
+    ],
+    "description": "Речная прогулка от причала «Крымский Мост»: виды на город, культурная программа, живая музыка на борту и кухня от Kuznya.",
+    "links": {
+      "instagram": "https://www.instagram.com/kuznyacruisemsk?igsh=d2psZnY2cG8zZjJ0",
+      "site": "https://cruise2.ru/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DOJg0wcDJSR/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "речная прогулка",
+      "Москва-река",
+      "виды"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 4,
+        "minutes": 15,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Парк Культуры",
+          "distanceKm": 0.5
+        },
+        {
+          "name": "Октябрьская",
+          "distanceKm": 1
+        },
+        {
+          "name": "Фрунзенская",
+          "distanceKm": 1.3
+        }
+      ]
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
