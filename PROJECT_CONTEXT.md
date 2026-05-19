@@ -19,7 +19,7 @@
 - Основная ветка: `main`
 - Публичная главная: `https://ulyana19svlv.github.io/family-hub/`
 - Публичная база мест: `https://ulyana19svlv.github.io/family-hub/site/`
-- Актуальная cache-bust ссылка после последнего изменения: `https://ulyana19svlv.github.io/family-hub/site/?v=calm-37`
+- Актуальная cache-bust ссылка после последнего изменения: `https://ulyana19svlv.github.io/family-hub/site/?v=calm-38`
 
 Важно: после изменений в HTML/CSS/JS обычно повышать `?v=calm-N`, чтобы браузер и телефон не держали старый кэш.
 
@@ -37,9 +37,9 @@
 
 ## Текущий статус базы мест
 
-На 14 мая 2026:
+На 19 мая 2026:
 
-- Всего мест: `57`.
+- Всего мест: `62`.
 - Города: `Москва`, `Санкт-Петербург`, `Тульская область`.
 - У всех мест должно быть поле `city`.
 - По умолчанию открывается город `Москва`.
@@ -112,15 +112,14 @@
 
 Последнее добавленное место:
 
-- `Ау / Aumeet`
+- `Roof 180`
 - Город: `Москва`
 - Категория: `события`
-- Адрес: `Москва, локация зависит от встречи`
-- Координаты: `[55.7558, 37.6176]`
-- Instagram: `https://www.instagram.com/aumeet_ru?igsh=MWxtZm5wZXgyY295Zw==`
-- Telegram: `https://t.me/aumeetru`
-- Сайт: `https://aumeet.ru/`
-- Медиа: картинка `https://aumeet.ru/photos/uzhin.webp`.
+- Адрес: `Новослободская улица, 48, Москва`
+- Координаты: `[55.78626, 37.59566]`
+- Instagram: `https://www.instagram.com/roof.180?igsh=MWRyd200eGlvaXVmNg%3D%3D`
+- Сайт: `https://roof180.ru`
+- Reels: `https://www.instagram.com/reel/DYZPvQ_sXT6/`
 
 ## Дизайн-направление
 

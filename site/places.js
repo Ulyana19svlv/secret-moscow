@@ -2436,6 +2436,218 @@ window.SECRET_MOSCOW_PLACES = [
     }
   },
   {
+    "id": "art-club-party",
+    "title": "Art Club Party",
+    "category": "мастер-классы",
+    "city": "Москва",
+    "address": "Москва, локация зависит от арт-встречи",
+    "coords": [
+      55.7558,
+      37.6176
+    ],
+    "description": "Арт-встречи, где можно нарисовать картину без навыков: художник ведет процесс, помогает на каждом этапе, а локация зависит от конкретного события.",
+    "links": {
+      "instagram": "https://www.instagram.com/art_club.msc?igsh=MTh2dWJjenpwaGE3NA%3D%3D",
+      "site": "https://www.artclubparty.ru/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DVTElexDXwl/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "арт-встреча",
+      "рисование",
+      "без навыков"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 7.1,
+        "minutes": 25,
+        "note": "локация меняется, время примерное до центра"
+      },
+      "metro": []
+    }
+  },
+  {
+    "id": "restik-moscow",
+    "title": "Restik",
+    "category": "рестораны и кафе",
+    "city": "Москва",
+    "address": "Самокатная улица, 4с11, Москва",
+    "coords": [
+      55.7571338,
+      37.6757722
+    ],
+    "description": "Ресторан на Самокатной в Лефортово: городской проект для еды, встреч и вечернего маршрута в не самом очевидном районе.",
+    "links": {
+      "instagram": "https://www.instagram.com/restikmoscow?igsh=MTVpYTVpc2NrZWtybw%3D%3D"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/p/DXemJ4LjBoa/",
+      "label": "Пост из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "ужин",
+      "Лефортово",
+      "новое место"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 10.7,
+        "minutes": 30,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Курская",
+          "distanceKm": 1
+        },
+        {
+          "name": "Чкаловская",
+          "distanceKm": 1.2
+        },
+        {
+          "name": "Площадь Ильича",
+          "distanceKm": 1.2
+        }
+      ]
+    }
+  },
+  {
+    "id": "safari-park-msk",
+    "title": "Safari Park",
+    "category": "парки и прогулки",
+    "city": "Москва",
+    "address": "Новая Москва, Троицкий район, точная локация уточняется заранее",
+    "coords": [
+      55.489,
+      37.295
+    ],
+    "description": "Загородный Safari Park в Новой Москве: формат для прогулки, животных и активного выезда за город. Точную точку лучше уточнять перед поездкой.",
+    "links": {
+      "instagram": "https://www.instagram.com/safaripark_msk?igsh=MTVscjFxaThlemRwag%3D%3D"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DXkZkDsCN0K/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "животные",
+      "Новая Москва",
+      "выезд за город"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 44,
+        "minutes": 70,
+        "note": "примерно из Москвы, точная локация уточняется заранее"
+      },
+      "metro": []
+    }
+  },
+  {
+    "id": "moskva-dom",
+    "title": "Москва Дом",
+    "category": "рестораны и кафе",
+    "city": "Москва",
+    "address": "Вятская улица, 41А, Москва",
+    "coords": [
+      55.8005347,
+      37.5814816
+    ],
+    "description": "Дом русского бильярда и ресторация на Вятской: место для ужина, игры и большого вечернего выхода.",
+    "links": {
+      "instagram": "https://www.instagram.com/moskva_dom?igsh=MWUzenNpc24xYjRsdA%3D%3D",
+      "site": "https://moskva-dom.com/"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DX1Larftzfh/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "бильярд",
+      "ресторан",
+      "вечер"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 9.1,
+        "minutes": 25,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Дмитровская",
+          "distanceKm": 0.7
+        },
+        {
+          "name": "Савёловская",
+          "distanceKm": 1
+        },
+        {
+          "name": "Петровский парк",
+          "distanceKm": 1.8
+        }
+      ]
+    }
+  },
+  {
+    "id": "roof-180",
+    "title": "Roof 180",
+    "category": "события",
+    "city": "Москва",
+    "address": "Новослободская улица, 48, Москва",
+    "coords": [
+      55.78626,
+      37.59566
+    ],
+    "description": "Кинотеатр на крыше у Новослободской: показы под открытым небом, кинобар и камерная rooftop-атмосфера.",
+    "links": {
+      "instagram": "https://www.instagram.com/roof.180?igsh=MWRyd200eGlvaXVmNg%3D%3D",
+      "site": "https://roof180.ru"
+    },
+    "media": {
+      "type": "instagram",
+      "url": "https://www.instagram.com/reel/DYZPvQ_sXT6/",
+      "label": "Reels из Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "кино",
+      "крыша",
+      "Новослободская"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 7.6,
+        "minutes": 25,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Менделеевская",
+          "distanceKm": 0.7
+        },
+        {
+          "name": "Савёловская",
+          "distanceKm": 0.8
+        },
+        {
+          "name": "Новослободская",
+          "distanceKm": 0.9
+        }
+      ]
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
