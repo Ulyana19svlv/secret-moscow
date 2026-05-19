@@ -2354,6 +2354,53 @@ window.SECRET_MOSCOW_PLACES = [
     }
   },
   {
+    "id": "salambo",
+    "title": "Salambo",
+    "category": "рестораны и кафе",
+    "city": "Москва",
+    "address": "улица Орджоникидзе, 12с4, Москва",
+    "coords": [
+      55.7101816,
+      37.5909272
+    ],
+    "description": "Ресторан тунисской кухни на Орджоникидзе: яркие специи, домашняя подача и атмосферный повод удивить компанию или свидание.",
+    "links": {
+      "instagram": "https://www.instagram.com/resto_salambo?igsh=MWdwb3JleGQ3Z2ZveA=="
+    },
+    "media": {
+      "type": "link",
+      "url": "https://www.instagram.com/resto_salambo?igsh=MWdwb3JleGQ3Z2ZveA==",
+      "label": "Instagram",
+      "icon": "instagram"
+    },
+    "tags": [
+      "тунисская кухня",
+      "специи",
+      "ужин"
+    ],
+    "access": {
+      "fromHome": {
+        "km": 5.8,
+        "minutes": 20,
+        "note": "примерно, без учета пробок"
+      },
+      "metro": [
+        {
+          "name": "Ленинский проспект",
+          "distanceKm": 0.4
+        },
+        {
+          "name": "Шаболовская",
+          "distanceKm": 1.5
+        },
+        {
+          "name": "Воробьёвы горы",
+          "distanceKm": 2
+        }
+      ]
+    }
+  },
+  {
     "id": "buterbrodnaya-spb",
     "title": "Бутербродная",
     "category": "рестораны и кафе",
